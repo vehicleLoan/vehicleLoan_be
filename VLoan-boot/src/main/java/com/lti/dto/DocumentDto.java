@@ -4,20 +4,34 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class DocumentDto {
 	
-	private int customerId;
-	private MultipartFile profilePic;
+	private int custId;
+	private MultipartFile aadharCard;
+	private MultipartFile panCard;
+	private MultipartFile paySlip;
 	
-	public int getCustomerId() {
-		return customerId;
+	public int getCustId() {
+		return custId;
 	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustId(int custId) {
+		this.custId = custId;
 	}
-	public MultipartFile getProfilePic() {
-		return profilePic;
+	public MultipartFile getAadharCard() {
+		return aadharCard;
 	}
-	public void setProfilePic(MultipartFile profilePic) {
-		this.profilePic = profilePic;
+	public void setAadharCard(MultipartFile aadharCard) {
+		this.aadharCard = aadharCard;
+	}
+	public MultipartFile getPanCard() {
+		return panCard;
+	}
+	public void setPanCard(MultipartFile panCard) {
+		this.panCard = panCard;
+	}
+	public MultipartFile getPaySlip() {
+		return paySlip;
+	}
+	public void setPaySlip(MultipartFile paySlip) {
+		this.paySlip = paySlip;
 	}
 	
 	

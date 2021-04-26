@@ -9,8 +9,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="vl_vehicleDetails")
+@Table(name="vl_vehicle_details")
 public class VehicleDetails {
 	
 	@Id
@@ -24,9 +26,9 @@ public class VehicleDetails {
 	
 	String vehicleModel;
 	
-	String state;
+	String vehicleState;
 	
-	String city;
+	String vehicleCity;
 	
 	@OneToOne(mappedBy="vehicle",cascade=CascadeType.ALL)
 	Loan loan;
@@ -55,20 +57,20 @@ public class VehicleDetails {
 		this.vehicleMake = vehicleMake;
 	}
 
-	public String getState() {
-		return state;
+	public String getVehicleState() {
+		return vehicleState;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setVehicleState(String vehicleState) {
+		this.vehicleState = vehicleState;
 	}
 
-	public String getCity() {
-		return city;
+	public String getVehicleCity() {
+		return vehicleCity;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setVehicleCity(String vehicleCity) {
+		this.vehicleCity = vehicleCity;
 	}
 
 	public String getVehicleModel() {
@@ -79,6 +81,7 @@ public class VehicleDetails {
 		this.vehicleModel = vehicleModel;
 	}
 
+	@JsonIgnore
 	public Loan getLoan() {
 		return loan;
 	}

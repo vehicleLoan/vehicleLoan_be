@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +17,8 @@ import javax.persistence.*;
 public class BankDetails {
 	
 	@Id
-	@SequenceGenerator(name="account_seq",initialValue=400,allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="account_seq")
+	@SequenceGenerator(name="bank_seq",initialValue=20400,allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="bank_seq")
 	int accountId;
 	
 	@Column(name="AccountNumber")
@@ -44,6 +47,7 @@ public class BankDetails {
 		this.ifsc = ifsc;
 	}
 
+	@JsonIgnore
 	public Customer getCustomer() {
 		return customer;
 	}

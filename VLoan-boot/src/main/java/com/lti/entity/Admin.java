@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class Admin {
     
     @Id
-    @SequenceGenerator(name="admin_seq",initialValue=100,allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="admin_seq")
+    @SequenceGenerator(name="admin_sequence",initialValue=10100,allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="admin_sequence")
     int adminId;
     String userName;
     String userPassword;

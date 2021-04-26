@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 
 import com.lti.repository.UserDao;
 import com.lti.repository.UserDaoImpl;
+import com.lti.dto.ApplicationFormDto;
+import com.lti.dto.EmploymentDetailsDto;
+import com.lti.dto.PersonalDetailsDto;
 import com.lti.entity.BankDetails;
 import com.lti.entity.Customer;
 import com.lti.entity.Document;
 import com.lti.entity.Loan;
 import com.lti.entity.VehicleDetails;
+import com.lti.exception.CustomerServiceException;
 
 //@Component
 @Service
@@ -21,10 +25,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
 
+	@Autowired
+	EmailService emailService;
+	
 	@Override
 	public Customer registerCustomer(Customer cust) {
-		// TODO Auto-generated method stub
-		return userDao.registerACustomer(cust);
+		if(!userDao.isCustomerPresent(cust.getEmail())) {
+		Customer c= userDao.registerACustomer(cust);
+		String subject = "Registration Confirmation";
+		String txt = "Hi "+c.getCustFirstName()+" You have successfully registered "+
+						"Your userId is "+c.getCustId();
+		emailService.sendEmailForNewRegistration(c.getEmail(), txt, subject);
+		
+		System.out.println("mail sent. ");
+		return c;
+		}
+		else {
+			//throw new CustomerServiceException("Customer already registered!");
+			return null;
+		}
 	}
 
 	@Override
@@ -40,15 +59,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Loan addLoan(Loan loan) {
+	public Loan addLoan(ApplicationFormDto appFormDto) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.addLoanDetails(appFormDto);
 	}
 
 	@Override
-	public Document addDoc(Document doc) {
+	public int addDoc(Document doc) {
 		// TODO Auto-generated method stub
-		return null;
+		 
+		 return userDao.addDocument(doc);
 	}
 
 	@Override
@@ -60,7 +80,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Loan> viewAllLoansByCustId(int custid) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.viewAllLoansByCustId(custid);
 	}
 
 	@Override
@@ -90,7 +110,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Customer findCustomerById(int custId) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.findcustomer(custId);
 	}
 
 	@Override
@@ -104,5 +124,56 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}	
+	
+	public Customer resetPassword(String password,int custId) {
 
+		 
+
+        return userDao.resetPassword(password,custId);
+    }
+
+ 
+
+
+    public boolean forgetPassword(int custId, String email) {
+
+ 
+
+        return userDao.forgetPassword(custId, email);
+    }
+
+	@Override
+	public Customer addPersonalDetails(PersonalDetailsDto personalDetailsDto) {
+		// TODO Auto-generated method stub
+		return userDao.addPersonalDetals(personalDetailsDto);
+	}
+	
+	@Override
+	public Customer addEmploymentDetails(EmploymentDetailsDto appFormDto) {
+		return userDao.addEmploymentDetails(appFormDto);
+	}
+
+	@Override
+	public int vehicledtls(ApplicationFormDto appformdto) {
+		// TODO Auto-generated method stub
+		return userDao.vehicledtls(appformdto);
+	}
+
+	@Override
+	public BankDetails addBankDetails(ApplicationFormDto appformdto) {
+		// TODO Auto-generated method stub
+		return userDao.addBankDetails(appformdto);
+	}
+
+	@Override
+	public Loan lndtls(ApplicationFormDto appformdto) {
+		// TODO Auto-generated method stub
+		return userDao.lndtls(appformdto);
+	}
+
+	@Override
+	public List<Loan> viewApproved(int id) {
+		// TODO Auto-generated method stub
+		return userDao.viewApprove(id);
+	}
 }

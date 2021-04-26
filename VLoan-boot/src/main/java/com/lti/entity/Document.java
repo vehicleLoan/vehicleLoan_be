@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class Document {
 
 	@Id
-	@SequenceGenerator(name = "document_seq", initialValue = 500, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "document_seq")
+	@SequenceGenerator(name = "doc_seq", initialValue = 40500, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doc_seq")
 	int docId;
 	
 	String panCard; //path of file

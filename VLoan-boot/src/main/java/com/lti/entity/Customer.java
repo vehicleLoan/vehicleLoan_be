@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Customer {
 
 	@Id
-	@SequenceGenerator(name = "cust_seq", initialValue = 200, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq")
+	@SequenceGenerator(name = "customer_seq", initialValue = 30200, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
 	//username
 	int custId;
 	
@@ -46,7 +46,7 @@ public class Customer {
 	int workExp;
 	
 	/* bank details (can be null) */
-	@OneToOne(mappedBy="customer",cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="customer",cascade=CascadeType.ALL,orphanRemoval = true)
 	BankDetails bankAccount;
 
 	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
@@ -213,7 +213,7 @@ public class Customer {
 	public void setCompanyState(String companyState) {
 		this.companyState = companyState;
 	}
-
+	
 	public BankDetails getBankAccount() {
 		return bankAccount;
 	}

@@ -1,17 +1,15 @@
 package com.lti.dto;
 
-
-
-
 public class AdminLoginDto {
 	
-	String userName;
+	int adminId;
 	String userPassword;
-	public String getUserName() {
-		return userName;
+	
+	public int getAdminId() {
+		return adminId;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
 	}
 	public String getUserPassword() {
 		return userPassword;

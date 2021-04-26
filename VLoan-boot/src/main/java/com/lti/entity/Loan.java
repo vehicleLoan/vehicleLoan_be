@@ -1,6 +1,6 @@
 package com.lti.entity;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +12,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name = "vl_loan")
 public class Loan {
 
 	@Id
-	@SequenceGenerator(name = "loan_seq", initialValue = 300, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_seq")
+	@SequenceGenerator(name = "loan_sequence", initialValue = 60300, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_sequence")
 	int loanId;
 	int loanAmount;
 	double rateOfInterest;
@@ -31,7 +33,6 @@ public class Loan {
 	String status;
 	
 	@ManyToOne
-	@JoinColumn(name="custId")
 	Customer customer;           //emp details, personal details,loan details of customers
 
 	@OneToOne
